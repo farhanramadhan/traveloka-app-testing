@@ -3,6 +3,7 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.MobileCapabilityType;
+import io.appium.java_client.touch.TapOptions;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
@@ -94,6 +95,7 @@ public class automation {
 //        // Assert Chosen Date
 //        Assert.assertTrue(DepartureDateButton.getText().contains(choosenDate));
 
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/widgetView")));
         MobileElement Passengers = (MobileElement) driver.findElement(By.xpath ("//android.widget.EditText[@bounds='[84,1237][516,1357]']"));
         Passengers.click();
 
@@ -122,10 +124,14 @@ public class automation {
 
         while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/recycler_view_content")));
         List<AndroidElement> elements = driver.findElements(By.xpath ("//androidx.recyclerview.widget.RecyclerView[@bounds='[0,316][1080,1800]']/*"));
-        MobileElement secondFlight = elements.get(2);
+        MobileElement secondFlight = elements.get(3);
         secondFlight.click();
 
-        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/button_select")));
+//        new TouchAction(driver).press(PointOption.point(576, 941)).release().perform();
+
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/button_select"))){
+            swipe(driver, 542, 542, 1458, 1285);
+        };
         MobileElement selectButton = (MobileElement) driver.findElement(By.xpath ("//android.widget.Button[@text='Select']"));
         selectButton.click();
 
@@ -143,13 +149,93 @@ public class automation {
         MobileElement Email = (MobileElement) driver.findElement(By.xpath ("//android.widget.EditText[@bounds='[48,762][1032,945]']"));
         Email.sendKeys(EmailContactDetails);
 
+        driver.hideKeyboard();
+
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/button_save")));
         MobileElement Save = (MobileElement) driver.findElementById("com.traveloka.android:id/button_save");
         Save.click();
 
-        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/text_view_toolbar_title")));
-        List<AndroidElement> elementsTraveler = driver.findElements(By.xpath ("//android.widget.LinearLayout[@bounds='[0,1035][1080,1587]']/*"));
-        MobileElement adultDetails = elementsTraveler.get(0);
+        swipe(driver, 542, 542, 1458, 400);
+
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/layout_empty")));
+        MobileElement adultDetails = (MobileElement) driver.findElement(By.xpath ("//android.widget.RelativeLayout[@bounds='[24,1035][1056,1203]']"));
         adultDetails.click();
+
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/button_save")));
+        MobileElement TitleAdult = (MobileElement) driver.findElement(By.xpath ("//android.widget.Spinner[@bounds='[48,414][1032,573]']"));
+        TitleAdult.click();
+
+        while (!(elementExist(driver, TIME_LIMIT, "android:id/text1")));
+        MobileElement MrChoice = (MobileElement) driver.findElement(By.xpath ("//android.widget.TextView[@bounds='[60,504][1020,639]']"));
+        MrChoice.click();
+
+        MobileElement FullNameAdult = (MobileElement) driver.findElement(By.xpath ("//android.widget.EditText[@bounds='[48,621][1032,804]']"));
+        FullNameAdult.sendKeys(AdultName);
+
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/button_save")));
+        MobileElement SaveAdult = (MobileElement) driver.findElementById("com.traveloka.android:id/button_save");
+        SaveAdult.click();
+
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/layout_empty")));
+        MobileElement childDetails = (MobileElement) driver.findElement(By.xpath ("//android.widget.RelativeLayout[@bounds='[24,1227][1056,1395]']"));
+        childDetails.click();
+
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/button_save")));
+        MobileElement TitleChild = (MobileElement) driver.findElement(By.xpath ("//android.widget.Spinner[@bounds='[48,414][1032,573]']"));
+        TitleChild.click();
+
+        while (!(elementExist(driver, TIME_LIMIT, "android:id/text1")));
+        MobileElement MsChoice = (MobileElement) driver.findElement(By.xpath ("//android.widget.TextView[@bounds='[60,639][1020,774]']"));
+        MsChoice.click();
+
+        MobileElement FullNameChild = (MobileElement) driver.findElement(By.xpath ("//android.widget.EditText[@bounds='[48,621][1032,804]']"));
+        FullNameChild.sendKeys(ChildName);
+
+        MobileElement DateBirthChild = (MobileElement) driver.findElement(By.xpath ("//android.widget.EditText[@bounds='[48,852][1032,1050]']"));
+        DateBirthChild.sendKeys(ChildBirth);
+
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/button_save")));
+        MobileElement SaveChild = (MobileElement) driver.findElementById("com.traveloka.android:id/button_save");
+        SaveChild.click();
+
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/layout_empty")));
+        MobileElement infantDetails = (MobileElement) driver.findElement(By.xpath ("//android.widget.RelativeLayout[@bounds='[24,1419][1056,1587]']"));
+        infantDetails.click();
+
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/button_save")));
+        MobileElement TitleInfant = (MobileElement) driver.findElement(By.xpath ("//android.widget.Spinner[@bounds='[48,414][1032,573]']"));
+        TitleInfant.click();
+
+        while (!(elementExist(driver, TIME_LIMIT, "android:id/text1")));
+        MobileElement MrChoiceI = (MobileElement) driver.findElement(By.xpath ("//android.widget.TextView[@bounds='[60,504][1020,639]']"));
+        MrChoiceI.click();
+
+        MobileElement FullNameInfant = (MobileElement) driver.findElement(By.xpath ("//android.widget.EditText[@bounds='[48,621][1032,804]']"));
+        FullNameInfant.sendKeys(InfantName);
+
+        MobileElement DateBirthInfant = (MobileElement) driver.findElement(By.xpath ("//android.widget.EditText[@bounds='[48,852][1032,1050]']"));
+        DateBirthInfant.sendKeys(InfantBirth);
+
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/button_save")));
+        MobileElement SaveInfant = (MobileElement) driver.findElementById("com.traveloka.android:id/button_save");
+        SaveInfant.click();
+
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/text_view_see_below_view")));
+        MobileElement CONTINUE = (MobileElement) driver.findElementById("com.traveloka.android:id/text_view_see_below_view");
+        CONTINUE.click();
+
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/button_continue")));
+        MobileElement Continue = (MobileElement) driver.findElementById("com.traveloka.android:id/button_continue");
+        Continue.click();
+
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/widget_button_blue")));
+        MobileElement YesContinue = (MobileElement) driver.findElementById("com.traveloka.android:id/widget_button_blue");
+        YesContinue.click();
+
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/text_view_toolbar_title")));
+        MobileElement SelectPaymentMethod = (MobileElement) driver.findElementById("com.traveloka.android:id/text_view_toolbar_title");
+        SelectPaymentMethod.getText();
+        System.out.println("THE END" + " " + SelectPaymentMethod.getText());
     }
 
     public static void swipe(AndroidDriver driver ,int startX, int endX, int startY, int endY) {
