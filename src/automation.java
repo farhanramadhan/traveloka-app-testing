@@ -1,7 +1,10 @@
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.MobileCapabilityType;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,16 +13,30 @@ import org.testng.Assert;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.List;
 
 public class automation {
 
-    public static final int TIME_LIMIT = 2;
+    public static final int TIME_LIMIT = 1;
 
     public static void main(String args[]) throws MalformedURLException {
 
-        String fromDestination = "Jakarta (JKTA)";
-        String toDestination = "Surabaya (SUB)";
+        // Expected Value
+        final String fromDestination = "Jakarta (JKTA)";
+        final String toDestination = "Surabaya (SUB)";
+
+        final String NameContactDetails = "Jidapa Ornec";
+        final String MobileNumberContactDetails = "81234314123";
+        final String EmailContactDetails = "JidapaOrc1241321@gmail.com";
+
+        final String AdultName = "Jimmy Hendrix";
+
+        final String ChildName = "adelyn rihana";
+        final String ChildBirth = "2 March 2010";
+
+        final String InfantName = "ray marco";
+        final String InfantBirth = "10 April 2019";
 
         DesiredCapabilities dc = new DesiredCapabilities();
         setCapability(dc);
@@ -28,67 +45,120 @@ public class automation {
 
 
         InitialChooseLanguage(driver);
-//        MobileElement el1 = (MobileElement) driver.findElementById("e39493f9-4db5-49fd-a9d2-5c2ecc5d9c5f");
-//        el1.click();
-
-//        MobileElement el101 = driver.findElement(By.linkText("Indonesia (English)"));
-//        el101.click();
-
-//        MobileElement el1 = (MobileElement) driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.RelativeLayout/android.widget.RelativeLayout");
-//        el1.click();
 
         while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/image_view_product_icon")));
         MobileElement FlightsButton = (MobileElement) driver.findElement(By.xpath ("//android.widget.ImageView[@bounds='[42,489][174,621]']"));
         FlightsButton.click();
 
-        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/widgetView")));
-        MobileElement FromButton = (MobileElement) driver.findElement(By.xpath ("//android.widget.EditText[@bounds='[84,516][996,636]']"));
-        FromButton.click();
+//        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/widgetView")));
+//        MobileElement FromButton = (MobileElement) driver.findElement(By.xpath ("//android.widget.EditText[@bounds='[84,516][996,636]']"));
+//        FromButton.click();
+//
+//        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/text_view_geo_name")));
+//        MobileElement JakartaChoiceButton = (MobileElement) driver.findElement(By.xpath ("//android.widget.TextView[@bounds='[48,398][446,463]']"));
+//        JakartaChoiceButton.click();
+//
+//        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/widgetView")));
+//
+//        // Assert From City
+//        Assert.assertEquals(FromButton.getText(), fromDestination);
+//
+//        MobileElement ToButton = (MobileElement) driver.findElement(By.xpath ("//android.widget.EditText[@bounds='[84,756][996,876]']"));
+//        ToButton.click();
+//
+//        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/text_view_geo_name")));
+//        MobileElement SurabayaChoiceButton = (MobileElement) driver.findElement(By.xpath ("//android.widget.TextView[@bounds='[48,557][482,622]']"));
+//        SurabayaChoiceButton.click();
+//
+//        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/widgetView")));
+//
+//        // Assert To Destination City
+//        Assert.assertEquals(ToButton.getText(), toDestination);
+//
+//        MobileElement DepartureDateButton = (MobileElement) driver.findElement(By.xpath ("//android.widget.EditText[@bounds='[84,996][996,1116]']"));
+//        DepartureDateButton.click();
+//
+//        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/info_top_text_view")));
+//        List<AndroidElement> elements = driver.findElements(By.xpath ("//android.widget.TextView[@bounds='[503,796][577,840]']/../*"));
+//        int indexDate = Integer.parseInt(elements.get(1).getAttribute("text"));
+//
+//        indexDate += 1;
+//        String choosenIndexDate = Integer.toString(indexDate);
+//        indexDate += 1;
+//        String choosenDate = Integer.toString(indexDate);
+//
+//        MobileElement theDayAfterTommorowDate = (MobileElement) driver.findElement(By.xpath ("//android.widget.RelativeLayout[@index='" + choosenIndexDate + "']"));
+//        theDayAfterTommorowDate.click();
+//
+//        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/widgetView")));
+//        // Assert Chosen Date
+//        Assert.assertTrue(DepartureDateButton.getText().contains(choosenDate));
 
-        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/text_view_geo_name")));
-        MobileElement JakartaChoiceButton = (MobileElement) driver.findElement(By.xpath ("//android.widget.TextView[@bounds='[48,398][446,463]']"));
-        JakartaChoiceButton.click();
+        MobileElement Passengers = (MobileElement) driver.findElement(By.xpath ("//android.widget.EditText[@bounds='[84,1237][516,1357]']"));
+        Passengers.click();
 
-        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/widgetView")));
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/wheel_passenger_adult")));
 
-        // Assert From City
-        Assert.assertEquals(FromButton.getText(), fromDestination);
+        swipe(driver, 542, 542, 1458, 1285);
+        swipe(driver, 790, 790, 1458, 1285);
 
-        MobileElement ToButton = (MobileElement) driver.findElement(By.xpath ("//android.widget.EditText[@bounds='[84,756][996,876]']"));
-        ToButton.click();
+        MobileElement SelectButton = (MobileElement) driver.findElement(By.xpath ("//android.widget.Button[@text='Select']"));
+        SelectButton.click();
+//
+//        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/widgetView")));
+//        MobileElement SeatClass = (MobileElement) driver.findElement(By.xpath ("//android.widget.EditText[@text='Economy']"));
+//        SeatClass.click();
+//
+//        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/radio_button")));
+//        MobileElement EconomyClass = (MobileElement) driver.findElement(By.xpath ("//android.widget.RadioButton[@bounds='[48,747][132,831]']"));
+//        EconomyClass.click();
+//
+//        MobileElement DoneButton = (MobileElement) driver.findElement(By.xpath ("//android.widget.Button[@text='DONE']"));
+//        DoneButton.click();
 
-        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/text_view_geo_name")));
-        MobileElement SurabayaChoiceButton = (MobileElement) driver.findElement(By.xpath ("//android.widget.TextView[@bounds='[48,557][482,622]']"));
-        SurabayaChoiceButton.click();
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/btn_search")));
+        MobileElement SearchButton = (MobileElement) driver.findElement(By.xpath ("//android.widget.Button[@text='Search']"));
+        SearchButton.click();
 
-        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/widgetView")));
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/recycler_view_content")));
+        List<AndroidElement> elements = driver.findElements(By.xpath ("//androidx.recyclerview.widget.RecyclerView[@bounds='[0,316][1080,1800]']/*"));
+        MobileElement secondFlight = elements.get(2);
+        secondFlight.click();
 
-        // Assert To Destination City
-        Assert.assertEquals(ToButton.getText(), toDestination);
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/button_select")));
+        MobileElement selectButton = (MobileElement) driver.findElement(By.xpath ("//android.widget.Button[@text='Select']"));
+        selectButton.click();
 
-        MobileElement DepartureDateButton = (MobileElement) driver.findElement(By.xpath ("//android.widget.EditText[@bounds='[84,996][996,1116]']"));
-        DepartureDateButton.click();
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/layout_empty")));
+        MobileElement FillInContactDetails = (MobileElement) driver.findElement(By.xpath ("//android.widget.RelativeLayout[@content-desc='trip_booking_view_contactemptycontainer']"));
+        FillInContactDetails.click();
 
-        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/info_top_text_view")));
-        List<AndroidElement> elements = driver.findElements(By.xpath ("//android.widget.TextView[@bounds='[503,796][577,840]']/../*"));
-        int indexDate = Integer.parseInt(elements.get(1).getAttribute("text"));
-        indexDate += 1;
-        String choosenIndexDate = Integer.toString(indexDate);
-        indexDate += 1;
-        String choosenDate = Integer.toString(indexDate);
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/text_view_toolbar_title")));
+        MobileElement FullName = (MobileElement) driver.findElement(By.xpath ("//android.widget.EditText[@bounds='[48,291][1032,522]']"));
+        FullName.sendKeys(NameContactDetails);
 
-//        while (!(elementExist(driver, 3, "com.traveloka.android:id/widgetView")));
-        MobileElement theDayAfterTommorowDate = (MobileElement) driver.findElement(By.xpath ("//android.widget.RelativeLayout[@index='" + choosenIndexDate + "']"));
-        theDayAfterTommorowDate.click();
+        MobileElement MobileNumber = (MobileElement) driver.findElement(By.xpath ("//android.widget.EditText[@bounds='[360,570][1032,714]']"));
+        MobileNumber.sendKeys(MobileNumberContactDetails);
 
-        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/widgetView")));
+        MobileElement Email = (MobileElement) driver.findElement(By.xpath ("//android.widget.EditText[@bounds='[48,762][1032,945]']"));
+        Email.sendKeys(EmailContactDetails);
 
-        // Assert Chosen Date
-        Assert.assertTrue(DepartureDateButton.getText().contains(choosenDate));
-//        MobileElement el10 = (MobileElement) driver.findElementByXPath("5ad3d6c6-330f-487e-bce0-e14269aee459");
-//        el10.click();
+        MobileElement Save = (MobileElement) driver.findElementById("com.traveloka.android:id/button_save");
+        Save.click();
 
-//        Assert.assertEquals(ad.findElementById("com.android.calculator2:id/edittext_new").getText(), "3×9\n" + "=27");
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/text_view_toolbar_title")));
+        List<AndroidElement> elementsTraveler = driver.findElements(By.xpath ("//android.widget.LinearLayout[@bounds='[0,1035][1080,1587]']/*"));
+        MobileElement adultDetails = elementsTraveler.get(0);
+        adultDetails.click();
+    }
+
+    public static void swipe(AndroidDriver driver ,int startX, int endX, int startY, int endY) {
+        try {
+            new TouchAction(driver).press(PointOption.point(startX, startY)).waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1)))
+                    .moveTo(PointOption.point(endX, endY)).release().perform();
+        } catch (Exception e) {
+            System.out.println("unable to swipe");
+        }
     }
 
     public static MobileElement mobileElement;
