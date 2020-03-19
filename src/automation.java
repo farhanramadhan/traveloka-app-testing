@@ -35,9 +35,15 @@ public class automation {
 
         final String ChildName = "adelyn rihana";
         final String ChildBirth = "2 March 2010";
+        final String ChildDate = "2";
+        final String ChildMonth = "Mar";
+        final String ChildYear = "2010";
 
         final String InfantName = "ray marco";
         final String InfantBirth = "10 April 2019";
+        final String InfantDate = "10";
+        final String InfantMonth = "Apr";
+        final String InfantYear = "2019";
 
         DesiredCapabilities dc = new DesiredCapabilities();
         setCapability(dc);
@@ -51,49 +57,49 @@ public class automation {
         MobileElement FlightsButton = (MobileElement) driver.findElement(By.xpath ("//android.widget.ImageView[@bounds='[42,489][174,621]']"));
         FlightsButton.click();
 
-//        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/widgetView")));
-//        MobileElement FromButton = (MobileElement) driver.findElement(By.xpath ("//android.widget.EditText[@bounds='[84,516][996,636]']"));
-//        FromButton.click();
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/widgetView")));
+        MobileElement FromButton = (MobileElement) driver.findElement(By.xpath ("//android.widget.EditText[@bounds='[84,516][996,636]']"));
+        FromButton.click();
+
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/text_view_geo_name")));
+        MobileElement JakartaChoiceButton = (MobileElement) driver.findElement(By.xpath ("//android.widget.TextView[@bounds='[48,398][446,463]']"));
+        JakartaChoiceButton.click();
+
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/widgetView")));
+
+        // Assert From City
+        Assert.assertEquals(FromButton.getText(), fromDestination);
+
+        MobileElement ToButton = (MobileElement) driver.findElement(By.xpath ("//android.widget.EditText[@bounds='[84,756][996,876]']"));
+        ToButton.click();
+
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/text_view_geo_name")));
+        MobileElement SurabayaChoiceButton = (MobileElement) driver.findElement(By.xpath ("//android.widget.TextView[@bounds='[48,557][482,622]']"));
+        SurabayaChoiceButton.click();
+
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/widgetView")));
+
+        // Assert To Destination City
+        Assert.assertEquals(ToButton.getText(), toDestination);
 //
-//        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/text_view_geo_name")));
-//        MobileElement JakartaChoiceButton = (MobileElement) driver.findElement(By.xpath ("//android.widget.TextView[@bounds='[48,398][446,463]']"));
-//        JakartaChoiceButton.click();
-//
-//        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/widgetView")));
-//
-//        // Assert From City
-//        Assert.assertEquals(FromButton.getText(), fromDestination);
-//
-//        MobileElement ToButton = (MobileElement) driver.findElement(By.xpath ("//android.widget.EditText[@bounds='[84,756][996,876]']"));
-//        ToButton.click();
-//
-//        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/text_view_geo_name")));
-//        MobileElement SurabayaChoiceButton = (MobileElement) driver.findElement(By.xpath ("//android.widget.TextView[@bounds='[48,557][482,622]']"));
-//        SurabayaChoiceButton.click();
-//
-//        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/widgetView")));
-//
-//        // Assert To Destination City
-//        Assert.assertEquals(ToButton.getText(), toDestination);
-//
-//        MobileElement DepartureDateButton = (MobileElement) driver.findElement(By.xpath ("//android.widget.EditText[@bounds='[84,996][996,1116]']"));
-//        DepartureDateButton.click();
-//
-//        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/info_top_text_view")));
-//        List<AndroidElement> elements = driver.findElements(By.xpath ("//android.widget.TextView[@bounds='[503,796][577,840]']/../*"));
-//        int indexDate = Integer.parseInt(elements.get(1).getAttribute("text"));
-//
-//        indexDate += 1;
-//        String choosenIndexDate = Integer.toString(indexDate);
-//        indexDate += 1;
-//        String choosenDate = Integer.toString(indexDate);
-//
-//        MobileElement theDayAfterTommorowDate = (MobileElement) driver.findElement(By.xpath ("//android.widget.RelativeLayout[@index='" + choosenIndexDate + "']"));
-//        theDayAfterTommorowDate.click();
-//
-//        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/widgetView")));
-//        // Assert Chosen Date
-//        Assert.assertTrue(DepartureDateButton.getText().contains(choosenDate));
+        MobileElement DepartureDateButton = (MobileElement) driver.findElement(By.xpath ("//android.widget.EditText[@bounds='[84,996][996,1116]']"));
+        DepartureDateButton.click();
+
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/info_top_text_view")));
+        List<AndroidElement> elements = driver.findElements(By.xpath ("//android.widget.TextView[@text='today']/../*"));
+        int indexDate = Integer.parseInt(elements.get(1).getAttribute("text"));
+
+        indexDate += 1;
+        String choosenIndexDate = Integer.toString(indexDate);
+        indexDate += 1;
+        String choosenDate = Integer.toString(indexDate);
+
+        MobileElement theDayAfterTommorowDate = (MobileElement) driver.findElement(By.xpath ("//android.widget.RelativeLayout[@index='" + choosenIndexDate + "']"));
+        theDayAfterTommorowDate.click();
+
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/widgetView")));
+        // Assert Chosen Date
+        Assert.assertTrue(DepartureDateButton.getText().contains(choosenDate));
 
         while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/widgetView")));
         MobileElement Passengers = (MobileElement) driver.findElement(By.xpath ("//android.widget.EditText[@bounds='[84,1237][516,1357]']"));
@@ -106,28 +112,27 @@ public class automation {
 
         MobileElement SelectButton = (MobileElement) driver.findElement(By.xpath ("//android.widget.Button[@text='Select']"));
         SelectButton.click();
-//
-//        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/widgetView")));
-//        MobileElement SeatClass = (MobileElement) driver.findElement(By.xpath ("//android.widget.EditText[@text='Economy']"));
-//        SeatClass.click();
-//
-//        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/radio_button")));
-//        MobileElement EconomyClass = (MobileElement) driver.findElement(By.xpath ("//android.widget.RadioButton[@bounds='[48,747][132,831]']"));
-//        EconomyClass.click();
-//
-//        MobileElement DoneButton = (MobileElement) driver.findElement(By.xpath ("//android.widget.Button[@text='DONE']"));
-//        DoneButton.click();
+
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/widgetView")));
+        MobileElement SeatClass = (MobileElement) driver.findElement(By.xpath ("//android.widget.EditText[@text='Economy']"));
+        SeatClass.click();
+
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/radio_button")));
+        MobileElement EconomyClass = (MobileElement) driver.findElement(By.xpath ("//android.widget.RadioButton[@bounds='[48,747][132,831]']"));
+        EconomyClass.click();
+
+        MobileElement DoneButton = (MobileElement) driver.findElement(By.xpath ("//android.widget.Button[@text='DONE']"));
+        DoneButton.click();
 
         while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/btn_search")));
         MobileElement SearchButton = (MobileElement) driver.findElement(By.xpath ("//android.widget.Button[@text='Search']"));
         SearchButton.click();
 
-        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/recycler_view_content")));
-        List<AndroidElement> elements = driver.findElements(By.xpath ("//androidx.recyclerview.widget.RecyclerView[@bounds='[0,316][1080,1800]']/*"));
-        MobileElement secondFlight = elements.get(3);
-        secondFlight.click();
 
-//        new TouchAction(driver).press(PointOption.point(576, 941)).release().perform();
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/recycler_view_content")));
+        List<AndroidElement> elementFlight = driver.findElements(By.xpath ("//androidx.recyclerview.widget.RecyclerView[@bounds='[0,316][1080,1800]']/*"));
+        MobileElement secondFlight = elementFlight.get(3);
+        secondFlight.click();
 
         while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/button_select"))){
             swipe(driver, 542, 542, 1458, 1285);
@@ -192,14 +197,71 @@ public class automation {
         FullNameChild.sendKeys(ChildName);
 
         MobileElement DateBirthChild = (MobileElement) driver.findElement(By.xpath ("//android.widget.EditText[@bounds='[48,852][1032,1050]']"));
-        DateBirthChild.sendKeys(ChildBirth);
+//        DateBirthChild.sendKeys(ChildBirth);
+        DateBirthChild.click();
+
+        while (!(elementExist(driver, TIME_LIMIT, "android:id/pickers")));
+        String monthChild = driver.findElement(By.xpath ("//android.widget.EditText[@bounds='[192,891][384,1035]']")).getText();
+        String dayChild = driver.findElement(By.xpath ("//android.widget.EditText[@bounds='[432,891][624,1035]']")).getText();
+        String yearChild = driver.findElement(By.xpath ("//android.widget.EditText[@bounds='[672,891][864,1035]']")).getText();
+        int diffMonth = getMonthInNumber(monthChild) - getMonthInNumber(ChildMonth);
+        int diffDay = Integer.parseInt(dayChild) - Integer.parseInt(ChildDate);
+        int diffYear = Integer.parseInt(yearChild) - Integer.parseInt(ChildYear);
+
+        boolean directionMonth = getDirection(diffMonth);
+        boolean directionDay = getDirection(diffDay);
+        boolean directionYear = getDirection(diffYear);
+
+        diffMonth = Math.abs(diffMonth);
+        diffDay = Math.abs(diffDay);
+        diffYear = Math.abs(diffYear);
+
+        if (directionYear) {
+            MobileElement minusYear = (MobileElement) driver.findElement(By.xpath ("//android.widget.Button[@bounds='[672,693][864,891]']"));
+            for ( int i = 1; i <= diffYear; i++) {
+                minusYear.click();
+            }
+        } else {
+            MobileElement addYear = (MobileElement) driver.findElement(By.xpath ("//android.widget.Button[@bounds='[672,1035][864,1233]']"));
+            for ( int i = 1; i <= diffYear; i++) {
+                addYear.click();
+            }
+        }
+
+        if (directionMonth) {
+            MobileElement minusMonth = (MobileElement) driver.findElement(By.xpath ("//android.widget.Button[@bounds='[192,693][384,891]']"));
+            for ( int i = 1; i <= diffMonth; i++) {
+                minusMonth.click();
+            }
+        } else {
+            MobileElement addMonth = (MobileElement) driver.findElement(By.xpath ("//android.widget.Button[@bounds='[192,1035][384,1233]']"));
+            for ( int i = 1; i <= diffMonth; i++) {
+                addMonth.click();
+            }
+        }
+
+        if (directionDay) {
+            MobileElement minusDay = (MobileElement) driver.findElement(By.xpath ("//android.widget.Button[@bounds='[432,693][624,891]']"));
+            for ( int i = 1; i <= diffDay; i++) {
+                minusDay.click();
+            }
+        } else {
+            MobileElement addDay = (MobileElement) driver.findElement(By.xpath ("//android.widget.Button[@bounds='[432,1035][624,1233]']"));
+            for ( int i = 1; i <= diffDay; i++) {
+                addDay.click();
+            }
+        }
+
+
+        MobileElement ChildOkButton = (MobileElement) driver.findElementById("android:id/button1");
+        ChildOkButton.click();
 
         while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/button_save")));
         MobileElement SaveChild = (MobileElement) driver.findElementById("com.traveloka.android:id/button_save");
         SaveChild.click();
 
         while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/layout_empty")));
-        MobileElement infantDetails = (MobileElement) driver.findElement(By.xpath ("//android.widget.RelativeLayout[@bounds='[24,1419][1056,1587]']"));
+        MobileElement infantDetails = (MobileElement) driver.findElementById("com.traveloka.android:id/layout_empty");
         infantDetails.click();
 
         while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/button_save")));
@@ -214,17 +276,76 @@ public class automation {
         FullNameInfant.sendKeys(InfantName);
 
         MobileElement DateBirthInfant = (MobileElement) driver.findElement(By.xpath ("//android.widget.EditText[@bounds='[48,852][1032,1050]']"));
-        DateBirthInfant.sendKeys(InfantBirth);
+        DateBirthInfant.click();
+
+        while (!(elementExist(driver, TIME_LIMIT, "android:id/pickers")));
+        String monthInfant = driver.findElement(By.xpath ("//android.widget.EditText[@bounds='[192,891][384,1035]']")).getText();
+        String dayInfant = driver.findElement(By.xpath ("//android.widget.EditText[@bounds='[432,891][624,1035]']")).getText();
+        String yearInfant = driver.findElement(By.xpath ("//android.widget.EditText[@bounds='[672,891][864,1035]']")).getText();
+        int diffMonths = getMonthInNumber(monthInfant) - getMonthInNumber(InfantMonth);
+        int diffDays = Integer.parseInt(dayInfant) - Integer.parseInt(InfantDate);
+        int diffYears = Integer.parseInt(yearInfant) - Integer.parseInt(InfantYear);
+
+        boolean directionMonths = getDirection(diffMonths);
+        boolean directionDays = getDirection(diffDays);
+        boolean directionYears = getDirection(diffYears);
+
+        diffMonths = Math.abs(diffMonths);
+        diffDays = Math.abs(diffDays);
+        diffYears = Math.abs(diffYears);
+
+        if (directionYears) {
+            MobileElement minusYear = (MobileElement) driver.findElement(By.xpath ("//android.widget.Button[@bounds='[672,693][864,891]']"));
+            for ( int i = 1; i <= diffYears; i++) {
+                minusYear.click();
+            }
+        } else {
+            MobileElement addYear = (MobileElement) driver.findElement(By.xpath ("//android.widget.Button[@bounds='[672,1035][864,1233]']"));
+            for ( int i = 1; i <= diffYears; i++) {
+                addYear.click();
+            }
+        }
+
+        if (directionMonths) {
+            MobileElement minusMonth = (MobileElement) driver.findElement(By.xpath ("//android.widget.Button[@bounds='[192,693][384,891]']"));
+            for ( int i = 1; i <= diffMonths; i++) {
+                minusMonth.click();
+            }
+        } else {
+            MobileElement addMonth = (MobileElement) driver.findElement(By.xpath ("//android.widget.Button[@bounds='[192,1035][384,1233]']"));
+            for ( int i = 1; i <= diffMonths; i++) {
+                addMonth.click();
+            }
+        }
+
+        if (directionDays) {
+            MobileElement minusDay = (MobileElement) driver.findElement(By.xpath ("//android.widget.Button[@bounds='[432,693][624,891]']"));
+            for ( int i = 1; i <= diffDays; i++) {
+                minusDay.click();
+            }
+        } else {
+            MobileElement addDay = (MobileElement) driver.findElement(By.xpath ("//android.widget.Button[@bounds='[432,1035][624,1233]']"));
+            for ( int i = 1; i <= diffDays; i++) {
+                addDay.click();
+            }
+        }
+
+        MobileElement InfantOkButton = (MobileElement) driver.findElementById("android:id/button1");
+        InfantOkButton.click();
 
         while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/button_save")));
         MobileElement SaveInfant = (MobileElement) driver.findElementById("com.traveloka.android:id/button_save");
         SaveInfant.click();
 
+        swipe(driver, 542, 542, 1458, 400);
+
         while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/text_view_see_below_view")));
         MobileElement CONTINUE = (MobileElement) driver.findElementById("com.traveloka.android:id/text_view_see_below_view");
         CONTINUE.click();
 
-        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/button_continue")));
+        while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/button_continue"))){
+            swipe(driver, 542, 542, 1458, 400);
+        };
         MobileElement Continue = (MobileElement) driver.findElementById("com.traveloka.android:id/button_continue");
         Continue.click();
 
@@ -286,5 +407,43 @@ public class automation {
         while (!(elementExist(driver, TIME_LIMIT, "com.traveloka.android:id/text_view_tooltip_ok")));
         MobileElement el6 = (MobileElement) driver.findElementById("com.traveloka.android:id/text_view_tooltip_ok");
         el6.click();
+    }
+
+    public static int getMonthInNumber(String month) {
+        switch (month) {
+            case "Jan":
+                return 1;
+            case "Feb":
+                return 2;
+            case "Mar":
+                return 3;
+            case "Apr":
+                return 4;
+            case "May":
+                return 5;
+            case "Jun":
+                return 6;
+            case "Jul":
+                return 7;
+            case "Aug":
+                return 8;
+            case "Sep":
+                return 9;
+            case "Oct":
+                return 10;
+            case "Nov":
+                return 11;
+            case "Dec":
+                return 12;
+            default:
+                return 0;
+        }
+    }
+
+    public static boolean getDirection(int number) {
+        if (number >= 0) {
+            return true;
+        }
+        return false;
     }
 }
